@@ -23,27 +23,27 @@ API REST completamente pública para e-commerce construida con **NestJS**, **Typ
 ```
 src/
 ├── common/
-│   ├── constants/         # Enums y mapas de constantes compartidos
-│   ├── dto/               # ApiResponseDto, PaginatedResponseDto, PaginationDto
-│   ├── filters/           # GlobalExceptionFilter
-│   ├── interceptors/      # TransformInterceptor, LoggingInterceptor
-│   └── interfaces/        # IBaseService<T>
+│   ├── constants/
+│   ├── dto/
+│   ├── filters/
+│   ├── interceptors/
+│   └── interfaces/
 ├── config/
-│   ├── app.config.ts      # Fábrica de configuración de la app (puerto, prefijo, entorno)
-│   ├── database.config.ts # Fábrica de configuración de la BD
-│   ├── database.module.ts # Configuración de TypeOrmModule.forRootAsync
-│   ├── env.validation.ts  # Esquema Joi — falla rápido ante variables de entorno inválidas
-│   ├── swagger.config.ts  # Configuración de Swagger / OpenAPI
-│   └── typeorm.cli.ts     # DataSource para migraciones con la CLI de TypeORM
+│   ├── app.config.ts
+│   ├── database.config.ts
+│   ├── database.module.ts
+│   ├── env.validation.ts
+│   ├── swagger.config.ts
+│   └── typeorm.cli.ts
 └── modules/
-    ├── categories/        # Jerarquía auto-referencial (padre / hijos)
+    ├── categories/
     ├── brands/
-    ├── products/          # Núcleo: producto + imágenes + variantes + etiquetas
-    ├── tags/              # Relación M:N con productos
-    ├── reviews/           # Reseñas sin autenticación (nombre + email)
-    ├── coupons/           # Descuentos porcentuales y fijos con validación
-    └── orders/            # Flujo completo: verificación de stock → precios → transacción
-        └── order-calculator.ts  # Lógica de precios pura (fácilmente testeable)
+    ├── products/
+    ├── tags/
+    ├── reviews/
+    ├── coupons/
+    └── orders/
+        └── order-calculator.ts
 ```
 
 ---
