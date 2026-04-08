@@ -28,35 +28,35 @@ export class CouponsController {
   constructor(private readonly couponsService: CouponsService) {}
 
   @Get()
-  @ApiOperation({ summary: 'List all coupons (paginated)' })
+  @ApiOperation({ summary: 'Listar todos los cupones (paginado)' })
   @ApiOkResponse({ type: Coupon, isArray: true })
   findAll(@Query() pagination: PaginationDto) {
     return this.couponsService.findAll(pagination);
   }
 
   @Get(':id')
-  @ApiOperation({ summary: 'Get a coupon by id' })
+  @ApiOperation({ summary: 'Obtener un cupón por id' })
   @ApiOkResponse({ type: Coupon })
   findOne(@Param('id') id: number) {
     return this.couponsService.findOne(id);
   }
 
   @Get('code/:code')
-  @ApiOperation({ summary: 'Look up a coupon by its code' })
+  @ApiOperation({ summary: 'Buscar un cupón por su código' })
   @ApiOkResponse({ type: Coupon })
   findByCode(@Param('code') code: string) {
     return this.couponsService.findByCode(code);
   }
 
   @Post()
-  @ApiOperation({ summary: 'Create a coupon' })
+  @ApiOperation({ summary: 'Crear un cupón' })
   @ApiCreatedResponse({ type: Coupon })
   create(@Body() dto: CreateCouponDto) {
     return this.couponsService.create(dto);
   }
 
   @Patch(':id')
-  @ApiOperation({ summary: 'Update a coupon' })
+  @ApiOperation({ summary: 'Actualizar un cupón' })
   @ApiOkResponse({ type: Coupon })
   update(@Param('id') id: number, @Body() dto: UpdateCouponDto) {
     return this.couponsService.update(id, dto);
@@ -64,7 +64,7 @@ export class CouponsController {
 
   @Delete(':id')
   @HttpCode(HttpStatus.NO_CONTENT)
-  @ApiOperation({ summary: 'Delete a coupon' })
+  @ApiOperation({ summary: 'Eliminar un cupón' })
   @ApiNoContentResponse()
   remove(@Param('id') id: number) {
     return this.couponsService.remove(id);

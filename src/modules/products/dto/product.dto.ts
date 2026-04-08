@@ -1,4 +1,4 @@
-import { ApiProperty, ApiPropertyOptional, PartialType } from '@nestjs/swagger';
+import { ApiProperty, ApiPropertyOptional, ApiSchema, PartialType } from '@nestjs/swagger';
 import {
   IsBoolean,
   IsNotEmpty,
@@ -14,13 +14,14 @@ import {
 import { Type } from 'class-transformer';
 import { PaginationDto } from '@common/dto/pagination.dto';
 
+@ApiSchema({ name: 'Imagen de Producto' })
 export class CreateProductImageDto {
   @ApiProperty({ example: 'https://cdn.example.com/img.jpg' })
   @IsString()
   @IsNotEmpty()
   url: string;
 
-  @ApiPropertyOptional({ example: 'Front view' })
+  @ApiPropertyOptional({ example: 'Vista frontal' })
   @IsOptional()
   @IsString()
   altText?: string;
@@ -37,8 +38,9 @@ export class CreateProductImageDto {
   sortOrder?: number;
 }
 
+@ApiSchema({ name: 'Variante de Producto' })
 export class CreateProductVariantDto {
-  @ApiProperty({ example: 'Large / Red' })
+  @ApiProperty({ example: 'Grande / rojo' })
   @IsString()
   @IsNotEmpty()
   @MaxLength(200)
@@ -62,11 +64,12 @@ export class CreateProductVariantDto {
   @Min(0)
   stock?: number;
 
-  @ApiPropertyOptional({ example: { size: 'L', color: 'Red' } })
+  @ApiPropertyOptional({ example: { size: 'L', color: 'Rojo' } })
   @IsOptional()
   attributes?: Record<string, string>;
 }
 
+@ApiSchema({ name: 'Crear Producto' })
 export class CreateProductDto {
   @ApiProperty({ example: 'iPhone 15 Pro' })
   @IsString()
@@ -80,7 +83,7 @@ export class CreateProductDto {
   @MaxLength(220)
   slug: string;
 
-  @ApiPropertyOptional({ example: 'The best iPhone yet.' })
+  @ApiPropertyOptional({ example: 'El mejor iPhone hasta la fecha.' })
   @IsOptional()
   @IsString()
   description?: string;
@@ -129,15 +132,17 @@ export class CreateProductDto {
 
   @ApiPropertyOptional({
     example: [2, 5],
-    description: 'Array of tag id numbers to attach',
+    description: 'Array de ids de tags',
   })
   @IsOptional()
   @IsUUID('4', { each: true })
   tagIds?: number[];
 }
 
+@ApiSchema({ name: 'Actualizar Producto' })
 export class UpdateProductDto extends PartialType(CreateProductDto) {}
 
+@ApiSchema({ name: 'Filtrar Productos' })
 export class ProductFilterDto extends PaginationDto {
   @ApiPropertyOptional({ example: 3 })
   @IsOptional()

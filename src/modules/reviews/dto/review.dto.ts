@@ -1,4 +1,4 @@
-import { ApiProperty, ApiPropertyOptional, PartialType } from '@nestjs/swagger';
+import { ApiProperty, ApiPropertyOptional, ApiSchema, PartialType } from '@nestjs/swagger';
 import {
   IsEmail,
   IsInt,
@@ -11,6 +11,7 @@ import {
 } from 'class-validator';
 import { PaginationDto } from '@common/dto/pagination.dto';
 
+@ApiSchema({ name: 'Crear Reseña' })
 export class CreateReviewDto {
   @ApiProperty({ example: 5, minimum: 1, maximum: 5 })
   @IsInt()
@@ -18,18 +19,18 @@ export class CreateReviewDto {
   @Max(5)
   rating: number;
 
-  @ApiPropertyOptional({ example: 'Excellent product!' })
+  @ApiPropertyOptional({ example: '¡Excelente producto!' })
   @IsOptional()
   @IsString()
   @MaxLength(200)
   title?: string;
 
-  @ApiPropertyOptional({ example: 'The build quality is outstanding.' })
+  @ApiPropertyOptional({ example: 'La calidad de construcción es excepcional.' })
   @IsOptional()
   @IsString()
   body?: string;
 
-  @ApiProperty({ example: 'John Doe' })
+  @ApiProperty({ example: 'Juan Pérez' })
   @IsString()
   @IsNotEmpty()
   @MaxLength(120)
@@ -43,8 +44,10 @@ export class CreateReviewDto {
   productId: number;
 }
 
+@ApiSchema({ name: 'Actualizar Reseña' })
 export class UpdateReviewDto extends PartialType(CreateReviewDto) {}
 
+@ApiSchema({ name: 'Filtrar Reseñas' })
 export class ReviewFilterDto extends PaginationDto {
   @ApiPropertyOptional()
   @IsOptional()

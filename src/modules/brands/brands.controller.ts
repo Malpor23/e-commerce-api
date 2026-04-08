@@ -28,28 +28,28 @@ export class BrandsController {
   constructor(private readonly brandsService: BrandsService) {}
 
   @Get()
-  @ApiOperation({ summary: 'List all brands (paginated)' })
+  @ApiOperation({ summary: 'Listar todas las marcas (paginado)' })
   @ApiOkResponse({ type: Brand, isArray: true })
   findAll(@Query() pagination: PaginationDto) {
     return this.brandsService.findAll(pagination);
   }
 
   @Get(':id')
-  @ApiOperation({ summary: 'Get a brand by id' })
+  @ApiOperation({ summary: 'Obtener una marca por id' })
   @ApiOkResponse({ type: Brand })
   findOne(@Param('id') id: number) {
     return this.brandsService.findOne(id);
   }
 
   @Post()
-  @ApiOperation({ summary: 'Create a brand' })
+  @ApiOperation({ summary: 'Crear una marca' })
   @ApiCreatedResponse({ type: Brand })
   create(@Body() dto: CreateBrandDto) {
     return this.brandsService.create(dto);
   }
 
   @Patch(':id')
-  @ApiOperation({ summary: 'Update a brand' })
+  @ApiOperation({ summary: 'Actualizar una marca' })
   @ApiOkResponse({ type: Brand })
   update(@Param('id') id: number, @Body() dto: UpdateBrandDto) {
     return this.brandsService.update(id, dto);
@@ -57,7 +57,7 @@ export class BrandsController {
 
   @Delete(':id')
   @HttpCode(HttpStatus.NO_CONTENT)
-  @ApiOperation({ summary: 'Delete a brand' })
+  @ApiOperation({ summary: 'Eliminar una marca' })
   @ApiNoContentResponse()
   remove(@Param('id') id: number) {
     return this.brandsService.remove(id);

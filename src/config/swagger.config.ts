@@ -6,37 +6,38 @@ export function setupSwagger(app: INestApplication, apiPrefix: string): void {
     .setTitle('E-commerce API')
     .setDescription(
       `
-## Public REST API for e-commerce
+## API REST para e-commerce
 
-A fully public API to test and prototype e-commerce integrations.
-No authentication required.
+Una API completamente pública para probar y prototipar integraciones de e-commerce.
+No requiere autenticación.
 
-### Features
-- Products with variants, images and tags
-- Categories (with nested subcategories)
-- Brands
-- Reviews
-- Coupons
-- Orders
+### Funcionalidades
+- Productos con variantes, imágenes y etiquetas
+- Categorías (con subcategorías anidadas)
+- Marcas
+- Reseñas
+- Cupones
+- Pedidos
 
-### Conventions
-- All endpoints are prefixed with \`/${apiPrefix}\`
-- Paginated responses include a \`meta\` object with pagination info
-- All timestamps are ISO 8601 in UTC
-- UUIDs are used as identifiers
+### Convenciones
+- Todos los endpoints tienen el prefijo \`/${apiPrefix}\`
+- Las respuestas paginadas incluyen un objeto \`meta\` con información de paginación
       `.trim(),
     )
     .setVersion('1.0')
-    .addTag('Categories', 'Product category hierarchy')
-    .addTag('Brands', 'Product brands')
-    .addTag('Products', 'Product catalog with variants and images')
-    .addTag('Tags', 'Product tags')
-    .addTag('Reviews', 'Product reviews')
-    .addTag('Coupons', 'Discount coupons')
-    .addTag('Orders', 'Customer orders')
+    .addTag('Categories', 'Jerarquía de categorías de productos')
+    .addTag('Brands', 'Marcas de productos')
+    .addTag('Products', 'Catálogo de productos con variantes e imágenes')
+    .addTag('Tags', '(Tag) Etiquetas de productos')
+    .addTag('Reviews', 'Reseñas de productos')
+    .addTag('Coupons', 'Cupones de descuento')
+    .addTag('Orders', 'Pedidos de clientes')
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
+
+  const SWAGGER_UI_VERSION = '5.31.0';
+  const CDN = `https://unpkg.com/swagger-ui-dist@${SWAGGER_UI_VERSION}`;
 
   SwaggerModule.setup('docs', app, document, {
     swaggerOptions: {
@@ -45,6 +46,12 @@ No authentication required.
       filter: true,
       tryItOutEnabled: true,
     },
-    customSiteTitle: 'E-commerce API Docs',
+    customSiteTitle: 'Documentación API E-commerce',
+    customCssUrl: `${CDN}/swagger-ui.css`,
+    customJs: [
+      `${CDN}/swagger-ui-bundle.js`,
+      `${CDN}/swagger-ui-standalone-preset.js`,
+    ],
+    customfavIcon: `${CDN}/favicon-32x32.png`,
   });
 }

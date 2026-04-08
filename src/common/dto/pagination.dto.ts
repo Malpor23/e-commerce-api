@@ -18,10 +18,6 @@ export class PaginationDto {
   @Max(100)
   limit: number = 10;
 
-  @ApiPropertyOptional({
-    example: 'shoes',
-    description: 'Full-text search term',
-  })
   @IsOptional()
   @IsString()
   search?: string;

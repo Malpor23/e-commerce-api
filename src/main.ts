@@ -16,6 +16,11 @@ async function bootstrap(): Promise<void> {
   // Global prefix
   app.setGlobalPrefix(apiPrefix);
 
+  // Redirect root "/" to the API base path
+  app.getHttpAdapter().getInstance().get('/', (_req, res) => {
+    res.redirect(301, `/${apiPrefix}`);
+  });
+
   // CORS
   app.enableCors();
 
@@ -39,8 +44,8 @@ async function bootstrap(): Promise<void> {
   );
 
   // Swagger
-  if (appConfig?.nodeEnv !== 'production') {
-    setupSwagger(app, appConfig?.apiPrefix ?? 'api/v1');
+  if (appConfig?.swaggerEnabled) {
+    setupSwagger(app, apiPrefix);
   }
 
   const port = appConfig?.port ?? parseInt('3000', 10);
@@ -50,7 +55,7 @@ async function bootstrap(): Promise<void> {
   const logger = new Logger('Bootstrap');
   logger.log(`Application running on http://localhost:${port}/${apiPrefix}`);
 
-  if (appConfig?.nodeEnv !== 'production') {
+  if (appConfig?.swaggerEnabled) {
     logger.log(`Swagger docs at http://localhost:${port}/docs`);
   }
 }

@@ -18,7 +18,7 @@ import { DatabaseConfig } from '@config/database.config';
           username: db.username,
           password: db.password,
           database: db.name,
-          synchronize: db.sync,
+          synchronize: db.sync && process.env.NODE_ENV !== 'production',
           logging: db.logging,
           migrations: [__dirname + '/../database/migrations/*{.ts,.js}'],
           autoLoadEntities: true,

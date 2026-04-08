@@ -4,6 +4,7 @@ export interface AppConfig {
   port: number;
   nodeEnv: string;
   apiPrefix: string;
+  swaggerEnabled: boolean;
 }
 
 export default registerAs(
@@ -12,5 +13,6 @@ export default registerAs(
     port: parseInt(process.env.PORT ?? '3000', 10),
     nodeEnv: process.env.NODE_ENV ?? 'development',
     apiPrefix: process.env.API_PREFIX ?? 'api/v1',
+    swaggerEnabled: process.env.SWAGGER_ENABLED === 'true',
   }),
 );

@@ -1,4 +1,4 @@
-import { ApiProperty, ApiPropertyOptional, PartialType } from '@nestjs/swagger';
+import { ApiProperty, ApiPropertyOptional, ApiSchema, PartialType } from '@nestjs/swagger';
 import {
   IsDateString,
   IsEnum,
@@ -13,6 +13,7 @@ import {
 } from 'class-validator';
 import * as constants from '@common/constants';
 
+@ApiSchema({ name: 'Crear Cupón' })
 export class CreateCouponDto {
   @ApiProperty({ example: 'SAVE20' })
   @IsString()
@@ -50,4 +51,5 @@ export class CreateCouponDto {
   expiresAt?: string;
 }
 
+@ApiSchema({ name: 'Actualizar Cupón' })
 export class UpdateCouponDto extends PartialType(CreateCouponDto) {}

@@ -258,7 +258,3 @@ Todos los endpoints de listado aceptan:
 | `search`  | string | Búsqueda en campos de nombre / código            |
 
 ---
-
-## Licencia
-
-MIT

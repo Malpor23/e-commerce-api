@@ -31,28 +31,28 @@ export class ReviewsController {
   constructor(private readonly reviewsService: ReviewsService) {}
 
   @Get()
-  @ApiOperation({ summary: 'List reviews — filter by product or rating' })
+  @ApiOperation({ summary: 'Listar reseñas — filtrar por producto o puntuación' })
   @ApiOkResponse({ type: Review, isArray: true })
   findAll(@Query() filter: ReviewFilterDto) {
     return this.reviewsService.findAll(filter);
   }
 
   @Get(':id')
-  @ApiOperation({ summary: 'Get a review by id' })
+  @ApiOperation({ summary: 'Obtener una reseña por id' })
   @ApiOkResponse({ type: Review })
   findOne(@Param('id') id: number) {
     return this.reviewsService.findOne(id);
   }
 
   @Post()
-  @ApiOperation({ summary: 'Create a review for a product' })
+  @ApiOperation({ summary: 'Crear una reseña para un producto' })
   @ApiCreatedResponse({ type: Review })
   create(@Body() dto: CreateReviewDto) {
     return this.reviewsService.create(dto);
   }
 
   @Patch(':id')
-  @ApiOperation({ summary: 'Update a review' })
+  @ApiOperation({ summary: 'Actualizar una reseña' })
   @ApiOkResponse({ type: Review })
   update(@Param('id') id: number, @Body() dto: UpdateReviewDto) {
     return this.reviewsService.update(id, dto);
@@ -60,7 +60,7 @@ export class ReviewsController {
 
   @Delete(':id')
   @HttpCode(HttpStatus.NO_CONTENT)
-  @ApiOperation({ summary: 'Delete a review' })
+  @ApiOperation({ summary: 'Eliminar una reseña' })
   @ApiNoContentResponse()
   remove(@Param('id') id: number) {
     return this.reviewsService.remove(id);

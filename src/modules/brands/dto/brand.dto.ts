@@ -1,4 +1,4 @@
-import { ApiProperty, ApiPropertyOptional, PartialType } from '@nestjs/swagger';
+import { ApiProperty, ApiPropertyOptional, ApiSchema, PartialType } from '@nestjs/swagger';
 import {
   IsNotEmpty,
   IsOptional,
@@ -7,6 +7,7 @@ import {
   MaxLength,
 } from 'class-validator';
 
+@ApiSchema({ name: 'Crear Marca' })
 export class CreateBrandDto {
   @ApiProperty({ example: 'Apple' })
   @IsString()
@@ -25,16 +26,17 @@ export class CreateBrandDto {
   @IsUrl()
   logoUrl?: string;
 
-  @ApiPropertyOptional({ example: 'Think different.' })
+  @ApiPropertyOptional({ example: 'Piensa diferente.' })
   @IsOptional()
   @IsString()
   description?: string;
 
-  @ApiPropertyOptional({ example: 'United States' })
+  @ApiPropertyOptional({ example: 'Colombia' })
   @IsOptional()
   @IsString()
   @MaxLength(100)
   country?: string;
 }
 
+@ApiSchema({ name: 'Actualizar Marca' })
 export class UpdateBrandDto extends PartialType(CreateBrandDto) {}

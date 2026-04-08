@@ -28,7 +28,7 @@ export class CategoriesController {
   constructor(private readonly categoriesService: CategoriesService) {}
 
   @Get()
-  @ApiOperation({ summary: 'List all categories (paginated)' })
+  @ApiOperation({ summary: 'Listar todas las categorías (paginado)' })
   @ApiOkResponse({ type: Category, isArray: true })
   findAll(@Query() pagination: PaginationDto) {
     return this.categoriesService.findAll(pagination);
@@ -36,7 +36,7 @@ export class CategoriesController {
 
   @Get(':id')
   @ApiOperation({
-    summary: 'Get a category by id (includes parent & children)',
+    summary: 'Obtener una categoría por id (incluye padre e hijos)',
   })
   @ApiOkResponse({ type: Category })
   findOne(@Param('id') id: number) {
@@ -44,14 +44,14 @@ export class CategoriesController {
   }
 
   @Post()
-  @ApiOperation({ summary: 'Create a new category' })
+  @ApiOperation({ summary: 'Crear una nueva categoría' })
   @ApiCreatedResponse({ type: Category })
   create(@Body() dto: CreateCategoryDto) {
     return this.categoriesService.create(dto);
   }
 
   @Patch(':id')
-  @ApiOperation({ summary: 'Update a category' })
+  @ApiOperation({ summary: 'Actualizar una categoría' })
   @ApiOkResponse({ type: Category })
   update(@Param('id') id: number, @Body() dto: UpdateCategoryDto) {
     return this.categoriesService.update(id, dto);
@@ -59,7 +59,7 @@ export class CategoriesController {
 
   @Delete(':id')
   @HttpCode(HttpStatus.NO_CONTENT)
-  @ApiOperation({ summary: 'Delete a category' })
+  @ApiOperation({ summary: 'Eliminar una categoría' })
   @ApiNoContentResponse()
   remove(@Param('id') id: number) {
     return this.categoriesService.remove(id);

@@ -1,6 +1,7 @@
-import { ApiProperty, ApiPropertyOptional, PartialType } from '@nestjs/swagger';
+import { ApiProperty, ApiPropertyOptional, ApiSchema, PartialType } from '@nestjs/swagger';
 import { IsNotEmpty, IsOptional, IsString, MaxLength } from 'class-validator';
 
+@ApiSchema({ name: 'Crear Categoría' })
 export class CreateCategoryDto {
   @ApiProperty({ example: 'Smartphones' })
   @IsString()
@@ -14,7 +15,7 @@ export class CreateCategoryDto {
   @MaxLength(140)
   slug: string;
 
-  @ApiPropertyOptional({ example: 'Latest smartphones and accessories' })
+  @ApiPropertyOptional({ example: 'Últimos smartphones y accesorios' })
   @IsOptional()
   @IsString()
   description?: string;
@@ -24,4 +25,5 @@ export class CreateCategoryDto {
   parentId?: number;
 }
 
+@ApiSchema({ name: 'Actualizar Categoría' })
 export class UpdateCategoryDto extends PartialType(CreateCategoryDto) {}

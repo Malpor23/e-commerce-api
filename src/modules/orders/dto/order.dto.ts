@@ -1,4 +1,4 @@
-import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { ApiProperty, ApiPropertyOptional, ApiSchema } from '@nestjs/swagger';
 import {
   IsEmail,
   IsEnum,
@@ -14,50 +14,52 @@ import { Type } from 'class-transformer';
 import * as constants from '@common/constants';
 import { PaginationDto } from '@common/dto/pagination.dto';
 
+@ApiSchema({ name: 'Dirección de Envío' })
 export class ShippingAddressDto {
-  @ApiProperty({ example: 'John Doe' })
+  @ApiProperty({ example: 'Juan Pérez' })
   @IsString()
   @IsNotEmpty()
   @MaxLength(160)
   fullName: string;
 
-  @ApiProperty({ example: '123 Main St' })
+  @ApiProperty({ example: 'Calle 123 # 45-67' })
   @IsString()
   @IsNotEmpty()
   @MaxLength(255)
   street: string;
 
-  @ApiProperty({ example: 'New York' })
+  @ApiProperty({ example: 'Bogotá' })
   @IsString()
   @IsNotEmpty()
   @MaxLength(100)
   city: string;
 
-  @ApiProperty({ example: 'NY' })
+  @ApiProperty({ example: 'Cundinamarca' })
   @IsString()
   @IsNotEmpty()
   @MaxLength(100)
   state: string;
 
-  @ApiProperty({ example: 'US' })
+  @ApiProperty({ example: 'CO' })
   @IsString()
   @IsNotEmpty()
   @MaxLength(60)
   country: string;
 
-  @ApiProperty({ example: '10001' })
+  @ApiProperty({ example: '110111' })
   @IsString()
   @IsNotEmpty()
   @MaxLength(20)
   zipCode: string;
 
-  @ApiPropertyOptional({ example: '+1 555-1234' })
+  @ApiPropertyOptional({ example: '+57 300 123 4567' })
   @IsOptional()
   @IsString()
   @MaxLength(30)
   phone?: string;
 }
 
+@ApiSchema({ name: 'Crear items del Pedido' })
 export class CreateOrderItemDto {
   @ApiProperty({ example: 54 })
   productId: number;
@@ -72,8 +74,9 @@ export class CreateOrderItemDto {
   quantity: number;
 }
 
+@ApiSchema({ name: 'Crear Pedido' })
 export class CreateOrderDto {
-  @ApiProperty({ example: 'John Doe' })
+  @ApiProperty({ example: 'Juan Pérez' })
   @IsString()
   @IsNotEmpty()
   @MaxLength(160)
@@ -100,6 +103,7 @@ export class CreateOrderDto {
   couponCode?: string;
 }
 
+@ApiSchema({ name: 'Actualizar Estado de Pedido' })
 export class UpdateOrderStatusDto {
   @ApiProperty({
     enum: constants.ORDER_STATUS,
@@ -109,6 +113,7 @@ export class UpdateOrderStatusDto {
   status: constants.OrderStatus;
 }
 
+@ApiSchema({ name: 'Filtrar Pedidos' })
 export class OrderFilterDto extends PaginationDto {
   @ApiPropertyOptional({ enum: constants.ORDER_STATUS })
   @IsOptional()

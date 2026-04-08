@@ -32,9 +32,9 @@ export class ProductsController {
 
   @Get()
   @ApiOperation({
-    summary: 'List products with filters and pagination',
+    summary: 'Listar productos con filtros y paginación',
     description:
-      'Filter by category, brand, price range, status and search term.',
+      'Filtra por categoría, marca, rango de precio, estado y término de búsqueda.',
   })
   @ApiOkResponse({ type: Product, isArray: true })
   findAll(@Query() filter: ProductFilterDto) {
@@ -42,7 +42,7 @@ export class ProductsController {
   }
 
   @Get(':id')
-  @ApiOperation({ summary: 'Get a product by id (includes all relations)' })
+  @ApiOperation({ summary: 'Obtener un producto por id (incluye todas las relaciones)' })
   @ApiOkResponse({ type: Product })
   findOne(@Param('id') id: number) {
     return this.productsService.findOne(id);
@@ -50,7 +50,7 @@ export class ProductsController {
 
   @Post()
   @ApiOperation({
-    summary: 'Create a product (with images, variants and tags)',
+    summary: 'Crear un producto (con imágenes, variantes y etiquetas)',
   })
   @ApiCreatedResponse({ type: Product })
   create(@Body() dto: CreateProductDto) {
@@ -58,7 +58,7 @@ export class ProductsController {
   }
 
   @Patch(':id')
-  @ApiOperation({ summary: 'Update a product' })
+  @ApiOperation({ summary: 'Actualizar un producto' })
   @ApiOkResponse({ type: Product })
   update(@Param('id') id: number, @Body() dto: UpdateProductDto) {
     return this.productsService.update(id, dto);
@@ -66,7 +66,7 @@ export class ProductsController {
 
   @Delete(':id')
   @HttpCode(HttpStatus.NO_CONTENT)
-  @ApiOperation({ summary: 'Delete a product' })
+  @ApiOperation({ summary: 'Eliminar un producto' })
   @ApiNoContentResponse()
   remove(@Param('id') id: number) {
     return this.productsService.remove(id);

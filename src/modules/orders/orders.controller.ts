@@ -31,14 +31,14 @@ export class OrdersController {
   constructor(private readonly ordersService: OrdersService) {}
 
   @Get()
-  @ApiOperation({ summary: 'List orders — filter by status or customer email' })
+  @ApiOperation({ summary: 'Listar pedidos — filtrar por estado o email del cliente' })
   @ApiOkResponse({ type: Order, isArray: true })
   findAll(@Query() filter: OrderFilterDto) {
     return this.ordersService.findAll(filter);
   }
 
   @Get(':id')
-  @ApiOperation({ summary: 'Get a full order with its line items' })
+  @ApiOperation({ summary: 'Obtener un pedido completo con sus líneas de detalle' })
   @ApiOkResponse({ type: Order })
   findOne(@Param('id') id: number) {
     return this.ordersService.findOne(id);
@@ -46,9 +46,9 @@ export class OrdersController {
 
   @Post()
   @ApiOperation({
-    summary: 'Place a new order',
+    summary: 'Realizar un nuevo pedido',
     description:
-      'Validates stock, applies coupon discount, computes totals and persists the order atomically.',
+      'Valida el stock, aplica el descuento del cupón, calcula los totales y persiste el pedido de forma atómica.',
   })
   @ApiCreatedResponse({ type: Order })
   create(@Body() dto: CreateOrderDto) {
@@ -56,7 +56,7 @@ export class OrdersController {
   }
 
   @Patch(':id/status')
-  @ApiOperation({ summary: 'Update order status' })
+  @ApiOperation({ summary: 'Actualizar el estado de un pedido' })
   @ApiOkResponse({ type: Order })
   updateStatus(@Param('id') id: number, @Body() dto: UpdateOrderStatusDto) {
     return this.ordersService.updateStatus(id, dto);
@@ -64,7 +64,7 @@ export class OrdersController {
 
   @Delete(':id')
   @HttpCode(HttpStatus.NO_CONTENT)
-  @ApiOperation({ summary: 'Delete an order' })
+  @ApiOperation({ summary: 'Eliminar un pedido' })
   @ApiNoContentResponse()
   remove(@Param('id') id: number) {
     return this.ordersService.remove(id);
